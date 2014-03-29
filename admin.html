@@ -16,28 +16,34 @@
 	
 </head>
 
-<body>
+<body style="padding-top:10px;">
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
-        <div id="upload_div clearfix">
+    <div class="col-md-12">
+        <div class="col-md-6" id="upload_div clearfix">
               <form class = "" role="form" id="form_blob" enctype="multipart/form-data" action="{{upload_url}}" method="post">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Image If Any :</label>
                     <div class="col-sm-7">
                       <input type="file" name= "file"/>
                     </div>
-                  </div>
+                </div>
               </form>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-7">
-                      <button class="btn btn-default" id="upload_photo">Upload</button>
-                    </div>
-                  </div>
-          </div>
+        </div>
+        <div class="col-md-6 pull-left">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7">
+                  <button class="btn btn-default" id="upload_photo">Upload</button>
+                </div>
+              </div>
           
-          <div class="inner_forms">
+        </div>
+    </div>
+  </div><!--1st Row Ending -->
+  <div class="row">
+          <div class="inner_forms col-md-5">
         	<form class = "form-horizontal" action="/admin" method="post" role ="form">
+        	    <input class="form-control" type="hidden" name="database"	value="offer"/>
               <div class="form-group">
                 <label for="offer_store" class="col-sm-5 control-label">Store Name :</label>
                 <div class="col-sm-7">
@@ -75,7 +81,7 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Affiliation Link :</label>
                 <div class="col-sm-7">
-                  <input class="form-control" type="text" placeholder="Store Aff Link" name="aff_link"	/>
+                  <input class="form-control" type="text" placeholder="Store Aff Link" name="store_aff_link"	/>
                 </div>
               </div>
           		<div class="form-group">
@@ -114,7 +120,7 @@
                   <input class="form-control" type="text" placeholder="Editors(True/False)" name="editors_pick"	/>
                 </div>
               </div>
-              <input class="form-control" type="hidden" id="blob_key" name="blob_key"	value=""/>
+              <input class="blob_key" type="hidden"  name="blob_key"	value=""/>
           		<div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">Enable Now :</label>
                 <div class="col-sm-7">
@@ -135,8 +141,43 @@
           		<!-- <input type="text" placeholder="dislike" name="dislike"	/> -->
         	</form>
         	</div>
-    </div><!-- End of Column md 5 -->
-  </div><!-- End of Row -->
+        	
+        	<div class="inner_forms col-md-5">
+        	<form class = "form-horizontal" action="/admin" method="post" role ="form">
+        	    <input class="form-control" type="hidden" name="database"	value="store"/>
+              <div class="form-group">
+                <label for="offer_store" class="col-sm-5 control-label">Store Name :</label>
+                <div class="col-sm-7">
+                  <input class="form-control" id="offer_store" type="text" placeholder="Store Name" name="store"		/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-5 control-label">Affiliation Id :</label>
+                <div class="col-sm-7">
+                  <input class="form-control" type="text" placeholder="Unique Store Affiliation Id" name="affid"		/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-5 control-label">Tag Name :</label>
+                <div class="col-sm-7">
+                  <input class="form-control" type="text" placeholder="Store Tag Name" name="tag_name"	/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-5 control-label">Store Link :</label>
+                <div class="col-sm-7">
+                  <input class="form-control" type="text" placeholder="Store Affiliation Home Page" name="store_aff_link"	/>
+                </div>
+              </div>
+          		<input type="hidden" class="blob_key" name="blob_key"	value=""/>
+          		<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7">
+                  <button type="submit" class="btn btn-default">Submit Store</button>
+                </div>
+              </div>
+            </form>
+          </div>
+    </div> <!-- End of Row -->
 </div> <!-- End of Container -->
 </body>
 </html>

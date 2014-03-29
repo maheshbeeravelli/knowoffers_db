@@ -62,7 +62,7 @@ class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
             output={'blob_key':str(t)}
             output=json.dumps(output)
             self.response.out.write(output)
-            self.redirect('/view_photo/%s' % upload.key())
+            # self.redirect('/view_photo/%s' % upload.key())
 
 
         except Exception as exc:
@@ -122,8 +122,9 @@ class Admin(webapp2.RequestHandler):
                 if len(my_user)==1:
                     for e in my_user:
                         if e.user_type=="Admin":
+                          database =self.request.get("database")
+                          if database=="offer":
                             store        =   self.request.get('store')
-                            # store   =  self.request.get('store')
                             title        =   self.request.get('title')
                             offer_position=  self.request.get('offer_kind')
                             offer_type   =   self.request.get('offer_type')
@@ -145,7 +146,20 @@ class Admin(webapp2.RequestHandler):
                             if blob_key!="":
                                 offer.blob_key=blob_key
                             offer.put()
-                            self.response.write(store)
+                            self.response.write("Offer Successfully Submitted")
+                            
+                          else:
+                            store_name        =   self.request.get('store')
+                            affid        =   self.request.get('affid')
+                            tag_name     =   self.request.get('tag_name')
+                            store_link     =   self.request.get("store_aff_link")
+                            store        =   datamodel.Stores(store=store_name, affid=affid,tagname=tag_name, store_link = store_link)
+                            blob_key     =   self.request.get('blob_key')  
+                            if blob_key!="":
+                                store.blob_key=blob_key
+                            store.put()
+                            self.response.write("Store is successfully submitted")
+                            
                         else:
                             self.redirect("/")
                 if len(my_user)==0:

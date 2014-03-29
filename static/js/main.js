@@ -29,8 +29,8 @@ $(document).ready(function(){
           contentType: false,
           success: function(data,status){
             // alert(data);
-            // alert(data.blob_key);
-            $("#blob_key").val(data.blob_key);
+            alert(data.blob_key);
+            $(".blob_key").val(data.blob_key);
             $("#upload_photo").html("Uploaded ");
             $("#upload_photo").toggleClass("btn-info");
           }
