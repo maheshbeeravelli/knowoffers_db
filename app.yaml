@@ -1,0 +1,16 @@
+application: knowoffers
+version: db
+runtime: python27
+threadsafe: true
+api_version: 1
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: latest

@@ -1,0 +1,50 @@
+  .btn
+  {
+      display: inline-block;
+      padding: 4px 14px;
+      margin-bottom: 0px;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      color: rgb(51, 51, 51);
+      text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.75);
+      background-color: rgb(245, 245, 245);
+      background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(230, 230, 230));
+      background-repeat: repeat-x;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(162, 162, 162);
+      -moz-border-top-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      border-image: none;
+      border-radius: 4px;
+      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+        border-color: rgba(82, 168, 236, 0.8);
+        border-top-color: rgba(82, 168, 236, 0.8);
+        border-right-color-value: rgba(82, 168, 236, 0.8);
+        border-bottom-color: rgba(82, 168, 236, 0.8);
+        border-left-color-value: rgba(82, 168, 236, 0.8);
+        border-left-color-ltr-source: physical;
+        border-left-color-rtl-source: physical;
+        border-right-color-ltr-source: physical;
+        border-right-color-rtl-source: physical;
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+.input-append input, .input-append select, .input-append .uneditable-input {
+    border-radius: 3px 0px 0px 3px;
+}

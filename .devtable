@@ -1,0 +1,31 @@
+profile = DevTable.Profile(
+  Analyze = [closure, python],
+  Build = [appenginemimic],
+  Debug = [appenginemimic, appengine],
+  Deploy = [appengine]
+)
+
+closure = Google.Closure(
+  ExternsLabel = 'externs',
+  IncludeDefaultExterns = true,
+  CompilationLevel = SIMPLE,
+  Files = Glob('*.js')
+)
+
+python = Python.Analyzer(
+  Files = Glob('*.py')
+)
+
+appenginemimic = Google.AppEngine.Mimic(
+  RunPath = '/',
+  AuthorizationProfile = 'GoogleAppEngine',
+  Title = 'Debug Version',
+  Files = ProjectFiles()
+)
+
+appengine = Google.AppEngine(
+  RunPath = '/',
+  AuthorizationProfile = 'GoogleAppEngine',
+  Title = 'Production Version',
+  Files = ProjectFiles()
+)
