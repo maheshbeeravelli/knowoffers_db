@@ -4,7 +4,7 @@ from google.appengine.ext import blobstore
 class Offers(db.Model):
   store=db.StringProperty()
   title=db.StringProperty()
-  offer_position=db.StringProperty(default="Main",choices=set(["Main", "Widget","Top","Popular","iframe","Others"]))
+  offer_position=db.StringProperty(default="Main",choices=set(["Main", "Widget","Top","Popular","DayDeal","iframe","Others"]))
   offer_type= db.StringProperty(choices=set(["Coupon", "Deal"]))
   coupon_code = db.StringProperty()
   aff_link=db.LinkProperty()
@@ -20,7 +20,8 @@ class Offers(db.Model):
   dislike=db.IntegerProperty(default=0)
   editors_pick=db.BooleanProperty(default=False)
   clicks = db.IntegerProperty(default=0)
-  blob_key=blobstore.BlobReferenceProperty()
+  # blob_key=db.StringProperty()
+  blob_key = blobstore.BlobReferenceProperty()
   enabled=db.BooleanProperty(default=True)
   
 class Users(db.Model):
@@ -40,4 +41,5 @@ class Stores(db.Model):
   store_link = db.LinkProperty()
   coupons_count = db.IntegerProperty(default=0)
   deals_count = db.IntegerProperty(default=0)
-  blob_key=blobstore.BlobReferenceProperty()
+  # blob_key=db.StringProperty()
+  blob_key = blobstore.BlobReferenceProperty()

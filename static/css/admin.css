@@ -4,6 +4,24 @@
  padding:5px;
 }
 
-#inner_forms{
-  padding:;
+#stores_form button, #offers_form button{
+  width:100%;
+  }
+  
+@media(min-width:992px){
+    
+  #upload_button_div{
+    left: -350px;
+  }
+  .submit_button_div{
+    float:right;
+  }
+}
+
+.sidebar-header{
+  text-align:center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px 0px;
+  margin-bottom:5px;
 }

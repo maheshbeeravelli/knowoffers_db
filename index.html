@@ -20,10 +20,12 @@
 	
 	<meta name="viewport" content="width=device-width">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
-	
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="static/js/main.js"></script>
 	<!-- css -->
 	<!--<link rel="stylesheet" href="static/css/bootstrap.css">-->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	
 	<link rel="stylesheet" href="static/css/main.css">
 	<link rel="stylesheet" href="static/css/responsive.css" media="screen and (max-width: 900px)">
 	<link rel="stylesheet" href="static/css/mhsstyles.css">
@@ -35,25 +37,19 @@
 	<div class="header"><div class="section-inner clearfix">
 		<div class="header-left" margin-right="-100px"><h1 >Know Your Offers</h1></div>
 		<div class="header-right">
-		
-		<form class="form-search">
-          <div class="input-group">
-              <input class="form-control " placeholder="Search for stores ( amazon,flipkart,snapdeal,eBay etc..) and products( mobiles,laptops etc..)" type="text">
-              <span class="input-group-btn">
-                  <button type="submit" class="btn btn-warning">Search</button>
-              </span>
-          </div>
-      </form>
-  <!--    <form>-->
-		<!--<div class="input-append">-->
-  <!--      <input class="span8" placeholder="Search for stores ( amazon,flipkart,snapdeal,eBay etc..) and products( mobiles,laptops etc..)" type="text">-->
-  <!--      <a href="#" class="btn btn-warning">Search</a>-->
-  <!--  </div>-->
-		<!--</form></div>-->
-	</div></div><!--/header-->
+  		<form class="form-search">
+            <div class="input-group">
+                <input class="form-control " placeholder="Search for stores ( amazon,flipkart,snapdeal,eBay etc..) and products( mobiles,laptops etc..)" type="text">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-warning">Search</button>
+                </span>
+            </div>
+        </form>
+  	</div>
+	</div><!--/header-->
 	
 	<!-- nav -->
-	<div class="nav"><div class="container">
+	<div class="custom_nav"><div class="container">
 		<ul class="clearfix">
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Top Offers</a></li>
@@ -74,26 +70,37 @@
 			
 			<!-- one-third -->
 			<div class="col-md-8">
+			{% for offer in offers %}
   			<div class="item col-md-6">
   			   <div class="item-inner">
-  			   	<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />
-  				  <div class="item-title"><h4>25% off on D-Link Router @ Flipkart</h4></div>
-  				  <p>Flat 25% off on the Dlink routers from Flipkart</p>
+    			   <div class="item-header">
+    			   {%for store in stores%}
+    			   <!--{{store.store}}-->
+    			   {% if store.store == offer.store%}
+    			   	<img src="/view_photo/{{store.blob_key.key}}" alt="A bird on a fence" />
+    			   {% endif %}
+    			   {% endfor %}
+    			   </div>
+  				  <div class="item-title"><h4>{{offer.title}}</h4></div>
+  				  <p>{{offer.description}}</p>
     				<div class="item-footer clearfix">
     					<div class="item-left">
-    						<span>Expires:</span> 24-Mar-2014
+    						<span>Expires:</span> <span class="expires-on">{{offer.expiry}}</span> 24-Mar-2014
     					</div>
     					<div class="item-right"> 
-    						<span>Posted:</span> 1day ago
+    						<span>Posted:</span> <span class="posted_on">{{offer.posted_on}}</span>
     					</div>
     				</div>
   			    <div class="item-button"> <a class="btn btn-info" href="#">View Deal &gt;&gt;</a> </div>
   			   </div>
   			</div>
-  			
+  			{% endfor%}
   			<div class="item col-md-6">
   			   <div class="item-inner">
-  			   	<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />
+  			    <div class="item-header">
+    			   	<img src="/view_photo/AMIfv97FqOq7FhB3jXajllOZqVIUmg1_0InzzOUbZYqmPlGMl4F9wTwXmWkG7af3GlNpd-H0WUYEmH3_cWMqOzxbgtHG6GmWd8AIOwNSb8H008zPtE9DtMjVY0-9nW-3WR2Sj2U8-HcL-n5NEpixkvi2uO5iwNF1Nw" alt="A bird on a fence" />
+    			   </div>
+  			   	<!--<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />-->
   				  <div class="item-title"><h4>25% off on D-Link Router @ Flipkart</h4></div>
   				  <p>Flat 25% off on the Dlink routers from Flipkart</p>
     				<div class="item-footer clearfix">
@@ -156,7 +163,22 @@
 			 <!--<script type="text/javascript" language="javascript"> var aax_size='300x150'; var aax_pubname = 'mhsblog-21'; var aax_src='302'; </script><script type="text/javascript" language="javascript" src="http://c.amazon-adsystem.com/aax2/assoc.js"></script>-->
 		          <ul class="nav nav-sidebar">
 		            <li class="list-group-item-info sidebar-header">Top Stores</li>
-		            <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee"><img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" /></a></li>
+		            <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee">
+  		            <div class="widget-item">
+      			   	      <img src="/view_photo/AMIfv94-JFHEwaYBcuifSwQ43ChsfL1jCpK0PgjF4c4S_4tXbQFiM6yWqjqNbWGglM-JJfkFWwMDzYqG3z3BMBQghGwfstSK9YwryrDQ5udO45G4GO7TMPV8xFWor38_PyOMdIyqyAOKDjnZ9NNe6ibD4e_y7s-pFg" alt="Amazon.in" />
+      			      </div>
+      			      Deals  21   : Coupons  0
+		            </a>
+		              
+		            </li>
+		             <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee">
+  		            <div class="widget-item">
+      			   	      <img src="/view_photo/AMIfv97TcvMNwYYS-AXbMc-CUbsIUza9lLsuuX-z_IG0iG6NLxAmxdCY6wX1EpFIUHg6rK5RAJC04-ho0LeA0ejZWdEcPU3BDE9yFcLgnOF4xYvvkdlxR-fSG5VaK7KO8Jl-t-Y7n6LK2RqkKA9GwDDYr8nXHRySYw" alt="Amazon.in" />
+      			      </div>
+      			      Deals  21   : Coupons  0
+		            </a>
+		              
+		            </li>
 		            <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee"><img src="https://mimic-dot-knowoffers.appspot.com/view_photo/AMIfv96R2WTmf2v3XRoyPaPr8rzK2wNGdFRwmvlV4JHZEfB1WaSSI4atmagi-ZjjfZlT1mfuLirXkUd-8YjCZ8TwzsnyJxZspnrdX7MN-coa2UCVGLak7OL-Jm6ubeyL9-7cW-28sY6QKaSPj4xWPKO5iEmM-eOlfA" /></a></li>
 		            <li><a href="#">Export</a></li>
 		          </ul>

@@ -3,6 +3,7 @@ import os
 import datetime
 import json
 import urllib
+
 #Custom imports
 import datamodel
 
@@ -18,11 +19,19 @@ admin_template = os.path.join(os.path.dirname(__file__), 'admin.html')
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
-    template_values = {
-      'name': "Mahesh",
-    }
-
+    # stores=[]
+    offers = db.GqlQuery("SELECT * FROM Offers")
+    stores = db.GqlQuery("SELECT * FROM Stores")
+    today = datetime.date.today()
+    # stores.append(db_stores)
+    offers_list = []
+    for offer in offers:
+      offers_list.append(datetime.datetime.now() - offer.posted_on)
+      # offers[offers.key].
     
+    template_values = {
+      'name': "Mahesh",'offers':offers,'stores':stores,'today':today,'offers_list':offers_list
+    }
     self.response.out.write(template.render(path, template_values))
 
 class Signin(webapp2.RequestHandler):
@@ -129,7 +138,7 @@ class Admin(webapp2.RequestHandler):
                             offer_position=  self.request.get('offer_kind')
                             offer_type   =   self.request.get('offer_type')
                             coupon_code  =   self.request.get('coupon_code')
-                            aff_link     =   self.request.get('aff_link')
+                            aff_link     =   self.request.get('store_aff_link')
                             description  =   self.request.get('description')
                             expiry       =   self.request.get('expiry')
                             posted_on    =   self.request.get('posted_on')
@@ -138,11 +147,13 @@ class Admin(webapp2.RequestHandler):
                             ideal_for    =   self.request.get('ideal_for')
                             blob_key     =   self.request.get('blob_key')  
                             expiry       =   datetime.datetime.strptime(expiry, '%d/%m/%Y').date()
-                            
+                            editors_pick =   bool(self.request.get("editors_pick"))
+                            enabled      =   bool(self.request.get("enabled"))
+
                             offer        =   datamodel.Offers(store=store,title=title,offer_position=offer_position,
                                              offer_type=offer_type,coupon_code=coupon_code,aff_link=aff_link,
                                              description=description,expiry=expiry,category=category,sub_category=sub_category,
-                                             ideal_for=ideal_for)
+                                             ideal_for=ideal_for,enabled=enabled,editors_pick=editors_pick)
                             if blob_key!="":
                                 offer.blob_key=blob_key
                             offer.put()

@@ -1,40 +1,62 @@
 $(document).ready(function(){  
-  var upload_form=$("#form_blob");
-  var url=upload_form.attr("action");
-  var files;
- 
-// Add events
-  $('input[type=file]').on('change', prepareUpload);
-// Grab the files and set them to our variable
-  function prepareUpload(event)
-  {
-    files = event.target.files;
-  }
   
-  $("#upload_photo").click(function(){
-    var data = new FormData();
-    $.each(files, function(key, value)
-    {
-      data.append(key, value);
-    });
-    $(this).toggleClass("btn-info");
-    $("#upload_photo").html("Uploading. . . ")
-    $.ajax({
-          url:url,
-          type: 'POST',
-          dataType : 'json',
-          data:data,
-          cache: false,
-          processData: false, // Don't process the files
-          contentType: false,
-          success: function(data,status){
-            // alert(data);
-            alert(data.blob_key);
-            $(".blob_key").val(data.blob_key);
-            $("#upload_photo").html("Uploaded ");
-            $("#upload_photo").toggleClass("btn-info");
-          }
-      });
-  });//End Of File upload handler
-  
+  $(".posted_on").css("font-weight:none");
+  $( ".posted_on" ).each(function( index ) {
+      // console.log( index + ": " + $( this ).text() );
+      var date=$(this).text();
+      var posted_split = date.split(",");
+      var posted_date =new Date(posted_split[0]+","+posted_split[1])
+      console.log("Posted Date " +posted_date);
+      var today=new Date();
+      var timeDiff = Math.abs(today.getTime() - posted_date.getTime());
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      diffDays--;
+      // alert("Difference Days : " + diffDays);
+      if(diffDays>30)
+      {
+        var months = Math.ceil(diffDays/30);
+        $( this ).text(months+ "months ago");
+      }
+      else if(diffDays>1)
+      {
+        $( this ).text(diffDays+ "days ago");
+      }
+      else if (diffDays==1){
+        $( this ).text("Yesterday");
+      }
+      else{
+        $( this ).text("Today");
+      }
+  });
+  $( ".expires-on" ).each(function( index ) {
+      var date=$(this).text();
+      var expiry_split = date.split(",");
+      var expiry_date =new Date(expiry_split[0]+","+expiry_split[1])
+      console.log("Expiry Date :" +expiry_date);
+      var today=new Date();
+      var timeDiff = Math.abs(today.getTime() - expiry_date.getTime());
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      diffDays;
+      // diffDays = -diffDays;
+      console.log("Expiry Difference :" + diffDays)
+      if(date=="January 01, 2000")
+      {
+        $( this ).text("No Expiry Date");
+      }
+      if(diffDays==7)
+      {
+        $( this ).text("1 week left");
+      }
+      else if (diffDays==1){
+        $( this ).text("1 day left");
+      }
+      else if(diffDays==0){
+        $(this).text("Last Day");
+      }
+      else if(diffDays<0)
+      {
+        $(this).text("Expired");
+      }
+      
+  });
 });
