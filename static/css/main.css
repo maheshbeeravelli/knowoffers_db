@@ -41,10 +41,13 @@ DIV.custom_nav {
 	BACKGROUND-COLOR: #404040;
 }
 DIV.custom_nav UL {
-	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;
+	
 }
 DIV.custom_nav UL LI {
-	LIST-STYLE-TYPE: none; FLOAT: left; FONT-SIZE: 93%; LIST-STYLE-IMAGE: none
+	LIST-STYLE-TYPE: none; FLOAT: left; FONT-SIZE: 93%; LIST-STYLE-IMAGE: none;
+	/*width: 12%;*/
+  text-align: center;
 }
 DIV.custom_nav UL LI A {
 	PADDING-BOTTOM: 10px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; DISPLAY: block; COLOR: #aaa;  BORDER-RIGHT: #040404 1px solid; TEXT-DECORATION: none; PADDING-TOP: 10px
@@ -102,4 +105,9 @@ DIV.custom_nav UL LI:hover {
 
 DIV.custom_nav UL LI:hover a {
   color:white;
+}
+
+.nopadding {
+   padding: 0 !important;
+   /*margin: 0 !important;*/
 }

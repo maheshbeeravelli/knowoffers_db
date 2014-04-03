@@ -1,15 +1,3 @@
-<!--<html>-->
-<!--  <head>-->
-<!--    <link rel="stylesheet" type="text/css" href="static/style.css">-->
-<!--  </head>-->
-<!--  <body>-->
-<!--    <h1>Hello {{ name }}</h1>-->
-<!--    <div class="style-me">This box is styled using CSS</div>-->
-<!--  </body>-->
-<!--</html>-->
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +10,13 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script src="static/js/main.js"></script>
+	<!--[if lt IE 9]>
+      <SCRIPT src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></SCRIPT>
+      <SCRIPT src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></SCRIPT>
+  <![endif]-->
 	<!-- css -->
+
+	
 	<!--<link rel="stylesheet" href="static/css/bootstrap.css">-->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	
@@ -32,7 +26,50 @@
 	
 </head>
 <body>
-
+<div class="navbar navbar-inverse navbar-fixed-top visible-xs" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Know Your Offers</a>
+        </div>
+        <div style="height: 1px;" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">Top Offers</a></li>
+            <li><a href="#contact">Latest Offers</a></li>
+            <li><a href="#contact">Stores</a></li>
+            <li><a href="#contact">Categories</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <form class="navbar-form navbar-right" role="form">
+            <div class="input-group">
+                <input class="form-control " placeholder="Search for stores ( amazon,flipkart,snapdeal,eBay etc..) and products( mobiles,laptops etc..)" type="text">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-warning">Search</button>
+                </span>
+            </div>
+            </form>
+            
+            <!--<li class="dropdown">-->
+            <!--  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
+            <!--  <ul class="dropdown-menu">-->
+            <!--    <li><a href="#">Action</a></li>-->
+            <!--    <li><a href="#">Another action</a></li>-->
+            <!--    <li><a href="#">Something else here</a></li>-->
+            <!--    <li class="divider"></li>-->
+            <!--    <li class="dropdown-header">Nav header</li>-->
+            <!--    <li><a href="#">Separated link</a></li>-->
+            <!--    <li><a href="#">One more separated link</a></li>-->
+            <!--  </ul>-->
+            <!--</li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 	<!-- header -->
 	<div class="header"><div class="section-inner clearfix">
 		<div class="header-left" margin-right="-100px"><h1 >Know Your Offers</h1></div>
@@ -49,27 +86,27 @@
 	</div><!--/header-->
 	
 	<!-- nav -->
-	<div class="custom_nav"><div class="container">
-		<ul class="clearfix">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Top Offers</a></li>
-			<li><a href="#">Categories</a></li>
-			<li><a href="#">Stores</a></li>
-			<li><a href="#">Latest Offers</a></li>
-			
-			<li><a href="#">Contact Us</a></li>
-		</ul>
-	</div></div><!--/nav-->
+	<div class="custom_nav hidden-xs">
+	  <div class="container">
+	    <div class="row">
+    		<ul class="">
+    			<li class="col-sm-2 nopadding"><a href="#">Home</a></li>
+    			<li class="col-sm-2 nopadding"><a href="#">Top Offers</a></li>
+    			<li class="col-sm-2 nopadding"><a href="#">Categories</a></li>
+    			<li class="col-sm-2 nopadding"><a href="#">Stores</a></li>
+    			<li class="col-sm-2 nopadding"><a href="#">Latest Offers</a></li>
+    			<li class="col-sm-2 nopadding"><a href="#">Contact Us</a></li>
+    		</ul>
+  		</div>
+	  </div>
+  </div><!--/nav-->
 	
 	<!-- body-content -->
 	<div class="body-content">
 	<div class="container">
-	
 		<!-- thirds -->
 		<div class="row">
-			
-			<!-- one-third -->
-			<div class="col-md-8">
+			<div class="col-md-8"><!-- Offers Body -->
 			{% for offer in offers %}
   			<div class="item col-md-6">
   			   <div class="item-inner">
@@ -85,92 +122,32 @@
   				  <p>{{offer.description}}</p>
     				<div class="item-footer clearfix">
     					<div class="item-left">
-    						<span>Expires:</span> <span class="expires-on">{{offer.expiry}}</span> 24-Mar-2014
+    						<span>Expires:</span> <span class="expires-on">{{offer.expiry}}</span>
     					</div>
     					<div class="item-right"> 
     						<span>Posted:</span> <span class="posted_on">{{offer.posted_on}}</span>
     					</div>
     				</div>
-  			    <div class="item-button"> <a class="btn btn-info" href="#">View Deal &gt;&gt;</a> </div>
+  			    <div class="item-button"> <a class="btn btn-info" href="#" data-key="{{offer.key}}">View Deal &gt;&gt;</a> </div>
   			   </div>
   			</div>
   			{% endfor%}
-  			<div class="item col-md-6">
-  			   <div class="item-inner">
-  			    <div class="item-header">
-    			   	<img src="/view_photo/AMIfv97FqOq7FhB3jXajllOZqVIUmg1_0InzzOUbZYqmPlGMl4F9wTwXmWkG7af3GlNpd-H0WUYEmH3_cWMqOzxbgtHG6GmWd8AIOwNSb8H008zPtE9DtMjVY0-9nW-3WR2Sj2U8-HcL-n5NEpixkvi2uO5iwNF1Nw" alt="A bird on a fence" />
-    			   </div>
-  			   	<!--<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />-->
-  				  <div class="item-title"><h4>25% off on D-Link Router @ Flipkart</h4></div>
-  				  <p>Flat 25% off on the Dlink routers from Flipkart</p>
-    				<div class="item-footer clearfix">
-    					<div class="item-left">
-    						<span>Expires:</span> 24-Mar-2014
-    					</div>
-    					<div class="item-right"> 
-    						<span>Posted:</span> 1day ago
-    					</div>
-    				</div>
-  			    <div class="item-button"> <a class="btn btn-info" href="#">View Deal &gt;&gt;</a> </div>
-  			   </div>
-  			</div>
-			<!--</div>-->
-			
-			<!--/one-third-->
-			
-			<!-- one-third -->
-			<!--<div class="col-md-4">-->
-				<div class="item col-md-6">
-  			   <div class="item-inner">
-  			   	<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />
-  				  <div class="item-title"><h4>25% off on D-Link Router @ Flipkart</h4></div>
-  				  <p>Flat 25% off on the Dlink routers from Flipkart</p>
-    				<div class="item-footer clearfix">
-    					<div class="item-left">
-    						<span>Expires:</span> 24-Mar-2014
-    					</div>
-    					<div class="item-right"> 
-    						<span>Posted:</span> 1day ago
-    					</div>
-    				</div>
-  			    <div class="item-button"> <a class="btn btn-info" href="#">View Deal &gt;&gt;</a> </div>
-  			   </div>
-  			</div>
-  			
-  			<div class="item col-md-6">
-  			   <div class="item-inner">
-  			   	<img src="http://img6a.flixcart.com/www/prod/images/flipkart_india-b1a41241.png" alt="A bird on a fence" />
-  				  <div class="item-title"><h4>25% off on D-Link Router @ Flipkart</h4></div>
-  				  <p>Flat 25% off on the Dlink routers from Flipkart</p>
-    				<div class="item-footer clearfix">
-    					<div class="item-left">
-    						<span>Expires:</span> 24-Mar-2014
-    					</div>
-    					<div class="item-right"> 
-    						<span>Posted:</span> 1day ago
-    					</div>
-    				</div>
-  			    <div class="item-button"> <a class="btn btn-info" href="#">View Deal &gt;&gt;</a> </div>
-  			   </div>
-  			</div>
-			</div><!--/one-third-->
-			
-			<!-- one-third -->
+  		</div>	<!--End of Offers Body -->
 			
 			<div class="col-md-4">
 			 <div class="list-group">
-			 <!--<SCRIPT charset="utf-8" type="text/javascript" src="http://ws-in.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=IN&ID=V20070822%2FIN%2Fmhsblog-21%2F8010%2F6f2f007c-aba2-4872-820b-049d4fb387a6&Operation=GetScriptTemplate"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-in.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=IN&ID=V20070822%2FIN%2Fmhsblog-21%2F8010%2F6f2f007c-aba2-4872-820b-049d4fb387a6&Operation=NoScript">Amazon.in Widgets</A></NOSCRIPT>-->
-			 <!--<script type="text/javascript" language="javascript"> var aax_size='300x150'; var aax_pubname = 'mhsblog-21'; var aax_src='302'; </script><script type="text/javascript" language="javascript" src="http://c.amazon-adsystem.com/aax2/assoc.js"></script>-->
 		          <ul class="nav nav-sidebar">
 		            <li class="list-group-item-info sidebar-header">Top Stores</li>
+		            {%for store in stores%}
 		            <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee">
   		            <div class="widget-item">
-      			   	      <img src="/view_photo/AMIfv94-JFHEwaYBcuifSwQ43ChsfL1jCpK0PgjF4c4S_4tXbQFiM6yWqjqNbWGglM-JJfkFWwMDzYqG3z3BMBQghGwfstSK9YwryrDQ5udO45G4GO7TMPV8xFWor38_PyOMdIyqyAOKDjnZ9NNe6ibD4e_y7s-pFg" alt="Amazon.in" />
+      			   	      <img src="/view_photo/{{store.blob_key.key}}" alt="Amazon.in" />
       			      </div>
-      			      Deals  21   : Coupons  0
+      			      Deals  {{store.deals_count}}   : Coupons  {{store.coupons_count}}
 		            </a>
 		              
 		            </li>
+		            {% endfor %}
 		             <li><a target="_blank" href="http://www.flipkart.com?affid=maheshbee">
   		            <div class="widget-item">
       			   	      <img src="/view_photo/AMIfv97TcvMNwYYS-AXbMc-CUbsIUza9lLsuuX-z_IG0iG6NLxAmxdCY6wX1EpFIUHg6rK5RAJC04-ho0LeA0ejZWdEcPU3BDE9yFcLgnOF4xYvvkdlxR-fSG5VaK7KO8Jl-t-Y7n6LK2RqkKA9GwDDYr8nXHRySYw" alt="Amazon.in" />
@@ -194,11 +171,7 @@
 		            <li><a href="">One more nav</a></li>
 		            <li><a href="">Another nav item</a></li>
           </ul>
-
 </div>
-
-
-
 		<!-- 	<div class="list-group">
         <a class="list-group-item list-group-item-info sidebar-header">
           Top Stores

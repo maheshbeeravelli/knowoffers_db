@@ -1,6 +1,14 @@
 $(document).ready(function(){  
+//Functions 
+  $(".a[data-key]").on("click", function() {
+    $(this).removeAttr("data-pause");
+    $(this).attr("data-play",4);
+    $("#output").text("playing 4");
+  });
   
-  $(".posted_on").css("font-weight:none");
+
+
+//DataManipulaters
   $( ".posted_on" ).each(function( index ) {
       // console.log( index + ": " + $( this ).text() );
       var date=$(this).text();
@@ -17,9 +25,20 @@ $(document).ready(function(){
         var months = Math.ceil(diffDays/30);
         $( this ).text(months+ "months ago");
       }
+      else if(diffDays>6)
+      {
+        weeks =diffDays/7;
+        if(weeks<2){
+          $( this ).text("1 week ago");
+        }
+        else{
+          week=Math.ceil(weeks);
+          $( this ).text(week + " weeks ago");
+        }
+      }
       else if(diffDays>1)
       {
-        $( this ).text(diffDays+ "days ago");
+        $( this ).text(diffDays+ " days ago");
       }
       else if (diffDays==1){
         $( this ).text("Yesterday");
@@ -28,6 +47,7 @@ $(document).ready(function(){
         $( this ).text("Today");
       }
   });
+  
   $( ".expires-on" ).each(function( index ) {
       var date=$(this).text();
       var expiry_split = date.split(",");

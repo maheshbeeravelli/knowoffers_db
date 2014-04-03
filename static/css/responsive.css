@@ -16,10 +16,15 @@ div.nav ul li{
 	border-bottom:1px solid #bababa;
 }
 @media screen and (max-width: 620px){
-	div.nav ul li {
-		width:33%;
+  .header{
+    padding-top:45px;
+  }
+	.header-left{
+	  width:0;
 	}
-	
+	.header-right{
+	  width:100%;
+	}
 }
 @media screen and (max-width: 500px){
 	div.nav ul li {
