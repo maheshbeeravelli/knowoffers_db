@@ -91,9 +91,16 @@ class ViewPhotoHandler(blobstore_handlers.BlobstoreDownloadHandler):
             
 class OfferPage(webapp2.RequestHandler):
     def get(self):
+      try:
         key=self.request.get('key')
-        offer=db.GqlQuery("SELECT * FROM Offers where key = :1",key)
+        # offer=db.GqlQuery("SELECT * FROM Offers where __key__ = :1",key)
+        offer = datastore.Offers.get(key)
+        self.response.write("HI this is an offer from:   ")
         self.response.write(offer)
+      except Exception as exc:
+        # self.redirect('/upload_failure.html')
+        self.response.write("Exception")
+        self.response.write(exc)
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),('/offer',OfferPage),('/signin',Signin),('/upload_photo', PhotoUploadHandler),('/view_photo/([^/]+)?',PhotoServeHandler)
