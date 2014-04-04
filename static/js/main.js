@@ -49,7 +49,7 @@ $(document).ready(function(){
   });
   
   $( ".expires-on" ).each(function( index ) {
-      var date=$(this).text();
+      var date=$(this).text().trim();
       var expiry_split = date.split(",");
       var expiry_date =new Date(expiry_split[0]+","+expiry_split[1])
       console.log("Expiry Date :" +expiry_date);
@@ -59,7 +59,7 @@ $(document).ready(function(){
       diffDays;
       // diffDays = -diffDays;
       console.log("Expiry Difference :" + diffDays)
-      if(date=="January 01, 2000")
+      if(date=="Nov. 1, 1991")
       {
         $( this ).text("No Expiry Date");
       }
